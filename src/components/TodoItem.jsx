@@ -17,9 +17,6 @@ function deleteTodo(index){
 }
 
 class TodoItem extends Component {
-  constructor(props){
-    super(props);
-  }
   onItemClick(e){
     e.preventDefault();
     store.dispatch(completeTodo(this.props.index));
@@ -31,8 +28,8 @@ class TodoItem extends Component {
   render(){
     return(
       <li>
-        <a href="#" onClick={(e)=>this.onItemClick(e)} style={{textDecoration: this.props.completed? 'line-through':'none'}}>{this.props.message.trim()}</a>
-        <a href="#" onClick={(e)=>this.onDeleteClicked(e)} style={{textDecoration: 'none'}}> [x]</a>
+        <a href="" onClick={(e)=>this.onItemClick(e)} style={{textDecoration: this.props.completed? 'line-through':'none'}}>{this.props.message.trim()}</a>
+        <a href="" onClick={(e)=>this.onDeleteClicked(e)} style={{textDecoration: 'none'}}> [x]</a>
       </li>
     );
   }

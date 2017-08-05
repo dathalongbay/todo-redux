@@ -1,17 +1,19 @@
 //libraries
 import React, { Component } from 'react';
 import { createStore } from 'redux';
-import logo from './logo.svg';
 import './App.css';
 //components
-import AddTodoForm from './components/AddTodoForm';
-import TodoList from './components/TodoList';
+import AddTodoForm  from './components/AddTodoForm';
+import TodoList     from './components/TodoList';
+import TodoFilter   from './components/TodoFilter';
 //constants
 import ActionType from './components/ActionType';
+import FilterType from './components/FilterType';
 
 var defaultState = {
   todo: {
-    items: []
+    items: [],
+    filter: FilterType.FILTER_ALL
   }
 };
 
@@ -33,6 +35,9 @@ function todoApp(state, action){
     case ActionType.CLEAR_ALL:
       newState.todo.items = [];
       break;
+    case ActionType.FILTER_TODO:
+      newState.todo.filter = action.filter;
+      break;
     default:
       break;
   }
@@ -48,6 +53,7 @@ class App extends Component {
         <h1>Todo App</h1>
         <AddTodoForm />
         <TodoList />
+        <TodoFilter filter={defaultState.todo.filter}/>
       </div>
     );
   }

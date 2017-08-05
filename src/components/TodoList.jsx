@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TodoItem from './TodoItem';
 import {store} from '../App';
+import FilterType from './FilterType';
 
 class TodoList extends Component {
   constructor(props){
@@ -12,21 +13,26 @@ class TodoList extends Component {
   componentWillMount(){
     store.subscribe(()=>{
       this.setState({
-        items: store.getState().todo.items
+        items: store.getState().todo.items,
+        filter: store.getState().todo.filter
       })
     });
   }
   render(){
     var items = [];
+    var filter = this.state.filter;
     this.state.items.forEach((item,index)=>{
-      items.push(
-        <TodoItem
-          key={index}
-          index={index}
-          message={item.message}
-          completed={item.completed}
-        />
-      );
+      if(filter === FilterType.FILTER_ALL || (filter === FilterType.FILTER_COMPLETED && item.completed)
+      || (filter === FilterType.FILTER_UNDONE && !item.completed)){
+        items.push(
+          <TodoItem
+            key={index}
+            index={index}
+            message={item.message}
+            completed={item.completed}
+          />
+        );
+      }
     });
     if(!items.length){
       return(
