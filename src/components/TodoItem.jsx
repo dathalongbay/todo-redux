@@ -1,20 +1,6 @@
 import React, {Component} from 'react';
-import ActionType from './ActionType';
 import {store} from '../App';
-
-function completeTodo(index){
-  return {
-    type: ActionType.COMPLETE_TODO,
-    index: index
-  }
-}
-
-function deleteTodo(index){
-  return {
-    type: ActionType.DELETE_TODO,
-    index: index
-  }
-}
+import {completeTodo, deleteTodo} from '../redux/actions';
 
 class TodoItem extends Component {
   onItemClick(e){

@@ -1,21 +1,6 @@
 import React, {Component} from 'react';
 import {store} from '../App';
-//constants
-import ActionType from './ActionType';
-
-function addTodo(message){
-  return {
-    type: ActionType.ADD_TODO,
-    message: message,
-    completed: false
-  }
-};
-
-function clearTodo(){
-  return {
-    type: ActionType.CLEAR_ALL,
-  }
-};
+import {addTodo, clearTodo} from '../redux/actions';
 
 class AddTodoForm extends Component {
   constructor(props){

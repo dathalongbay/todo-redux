@@ -1,14 +1,7 @@
 import React, {Component} from 'react';
-import ActionType from './ActionType';
-import FilterType from './FilterType';
 import {store} from '../App';
-
-function filterTodo(value) {
-  return {
-    type: ActionType.FILTER_TODO,
-    filter: value
-  };
-}
+import {filterTodo} from '../redux/actions';
+import {FilterType} from '../constants/constants';
 
 class TodoFilter extends Component {
   constructor(props){
@@ -20,7 +13,7 @@ class TodoFilter extends Component {
   componentWillMount(){
     store.subscribe(()=>{
       this.setState({
-        option: store.getState().todo.filter
+        option: store.getState().filter
       })
     });
   }

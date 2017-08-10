@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TodoItem from './TodoItem';
 import {store} from '../App';
-import FilterType from './FilterType';
+import {FilterType} from '../constants/constants';
 
 class TodoList extends Component {
   constructor(props){
@@ -13,8 +13,8 @@ class TodoList extends Component {
   componentWillMount(){
     store.subscribe(()=>{
       this.setState({
-        items: store.getState().todo.items,
-        filter: store.getState().todo.filter
+        items: store.getState().items?store.getState().items:[],
+        filter: store.getState().filter
       })
     });
   }

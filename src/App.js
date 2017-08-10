@@ -1,47 +1,18 @@
+import './App.css';
 //libraries
 import React, { Component } from 'react';
 import { createStore } from 'redux';
-import './App.css';
+import {todoApp} from './redux/reducer';
 //components
 import AddTodoForm  from './components/AddTodoForm';
 import TodoList     from './components/TodoList';
 import TodoFilter   from './components/TodoFilter';
 //constants
-import ActionType from './components/ActionType';
-import FilterType from './components/FilterType';
+import {FilterType} from './constants/constants';
 
 var defaultState = {
-  todo: {
-    items: [],
-    filter: FilterType.FILTER_ALL
-  }
-};
-
-function todoApp(state, action){
-  var newState = JSON.parse(JSON.stringify(state));
-  switch (action.type) {
-    case ActionType.ADD_TODO:
-      newState.todo.items.push({
-        message: action.message,
-        completed: false
-      });
-      break;
-    case ActionType.COMPLETE_TODO:
-      newState.todo.items[action.index].completed = !newState.todo.items[action.index].completed;
-      break;
-    case ActionType.DELETE_TODO:
-      newState.todo.items.splice(action.index, 1);
-      break;
-    case ActionType.CLEAR_ALL:
-      newState.todo.items = [];
-      break;
-    case ActionType.FILTER_TODO:
-      newState.todo.filter = action.filter;
-      break;
-    default:
-      break;
-  }
-  return newState;
+  items: [],
+  filter: FilterType.FILTER_ALL
 };
 
 var store = createStore(todoApp, defaultState);
@@ -53,7 +24,7 @@ class App extends Component {
         <h1>Todo App</h1>
         <AddTodoForm />
         <TodoList />
-        <TodoFilter filter={defaultState.todo.filter}/>
+        <TodoFilter filter={defaultState.filter}/>
       </div>
     );
   }
