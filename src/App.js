@@ -1,4 +1,3 @@
-import './App.css';
 //libraries
 import React, { Component } from 'react';
 import { createStore } from 'redux';
